@@ -1,4 +1,4 @@
-const {Pizza} = require ('../models');
+const { Pizza } = require ('../models');
 
 const pizzaController = {
     //get all pizzas
@@ -7,8 +7,10 @@ const pizzaController = {
         .then (dbPizzaData => res.json(dbPizzaData))
         .catch(err => {
             console.log(err);
-            res.status(500).json(err)});
+            res.status(500).json(err);
+        });
     },
+    
     //get one pizza by id   
     getPizzaById ({ params }, res) {
         Pizza.findOne({
