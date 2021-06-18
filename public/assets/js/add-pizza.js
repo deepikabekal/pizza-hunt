@@ -22,6 +22,7 @@ const handleAddTopping = event => {
 
   const label = document.createElement('label');
   label.textContent = toppingValue;
+  //The htmlFor property sets or returns the value of the for attribute of a label.
   label.htmlFor = toppingValue
     .toLowerCase()
     .split(' ')
@@ -51,6 +52,24 @@ const handlePizzaSubmit = event => {
   }
 
   const formData = { pizzaName, createdBy, size, toppings };
+
+  fetch ('/api/pizzas', {
+    method : 'POST', 
+    headers : {
+      Accept : 'application/json',
+      'Content-Type' : 'applcation/json'
+    },
+    body : JSON.stringify(formData)
+  })
+  .then (response => response.json())
+  .then (postResponse => {
+    alert ('Pizza created successfully!');
+    console.log(postResponse);
+  })
+  .catch(err => {
+    console.log(err);
+  })
+
 };
 
 $pizzaForm.addEventListener('submit', handlePizzaSubmit);
