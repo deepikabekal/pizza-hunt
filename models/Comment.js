@@ -5,8 +5,8 @@ const ReplySchema = new Schema (
     {
         //set custom replyId to avoid confusion with the parent comment id
         replyId : {
-            type : Schema.Types.ObjectId(),
-            default : () => new Types.ObjectId()
+            type: Schema.Types.ObjectId,
+            default: () => new Types.ObjectId()
         },
 
         replyBody : {
@@ -53,11 +53,12 @@ const CommentSchema = new Schema (
         toJSON : {
             getters : true,
             virtuals : true
-        }
+        },
+        id : false
     }
 );
 
-CommentSchema.virtuals('replyCount').get(function () {
+CommentSchema.virtual('replyCount').get(function () {
     return this.replies.length;
 });
 
